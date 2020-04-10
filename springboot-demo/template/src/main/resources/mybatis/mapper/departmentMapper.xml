@@ -7,6 +7,15 @@
         insert into department(id,name,descr) values(#{id},#{name},#{descr})
     </insert>
 
+
+    <insert id="insertDepartmentList" parameterType="java.util.List">
+        insert into department(id,name,descr) values
+        <foreach collection="departmentList" item="dml" separator=",">
+        (#{dml.id},#{dml.name},#{dml.descr})
+        </foreach>
+    </insert>
+
+
     <select id="getById" parameterType="java.lang.Integer" resultType="com.cxy.template.entity.Department">
         select id,name,descr from department where id = #{id}
     </select>
